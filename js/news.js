@@ -38,31 +38,31 @@ function newsShow (news){
     const cardDiv = document.getElementById('cardDiv');
     cardDiv.innerText = '';
 
-    if((news.length) !== 0){
+    if((news?.length) !== 0){
 
       for(const data of news){
-        console.log(data)
+        // console.log(data)
         const newCardDiv = document.createElement('div');
         newCardDiv.setAttribute("class", "container");
         newCardDiv.innerHTML= `
-        <div class="container" onclick="newsdetail('${data._id}')" > 
+        <div class="container" onclick="newsdetail('${data?._id}')" > 
               <div class="card mb-3 w-100 shadow " data-bs-toggle="modal" data-bs-target="#staticBackdrop"> 
                 <div class="row g-0"> 
                 <div class="col-md-3 p-4">
-                  <img src="${data.thumbnail_url}" class="img-fluid rounded" alt="...">
+                  <img src="${data?.thumbnail_url}" class="img-fluid rounded" alt="...">
                 </div>
                 <div class="col-md-9">
                   <div class="card-body px-4 pt-4 h-75 overflow-hidden short">
-                    <h5 class="card-title h4">${data.title}</h5>
-                    <p class="card-text ">${data.details}</p>
+                    <h5 class="card-title h4">${data?.title}</h5>
+                    <p class="card-text ">${data?.details}</p>
                   </div>
                   <div class="d-flex justify-content-between px-4  ">
                     <div class="d-flex align-self-center ">
-                      <img style="border-radius: 100%; width: 40px;" src="${data.author.img}" alt="">
-                      <p class="mx-3 mt-3 ">${data.author.name}</p>
+                      <img style="border-radius: 100%; width: 40px;" src="${data?.author.img}" alt="">
+                      <p class="mx-3 mt-3 ">${data?.author.name}</p>
                     </div>
                     <div class="d-flex align-items-center">
-                      <i class="fa-solid fa-eye">${data.total_view}</i>
+                      <i class="fa-solid fa-eye">${data?.total_view}</i>
                     </div>
                     <div class="d-flex align-items-center">
                       <i class="fa-solid fa-star"></i>
@@ -99,18 +99,22 @@ function newsShow (news){
 
 
   function newsdetail(newsditails){
+    
     const url = `https://openapi.programming-hero.com/api/news/${newsditails}`
     // console.log(url)
     fetch(url)
       .then(res => res.json())
-      .then(news => modal(news.data[0]))
+      .then(news => modal(news?.data[0]))
   }
 
 
 function modal (data){
-  // console.log(data);
-  const modalsec = document.getElementById('modal');
+  // console.log(data)
+  
+  const  modalsec = document.getElementById('modal');
+  // modalsec.innerText = '';
   const newdiv = document.createElement('div')
+  
   newdiv.innerHTML = `
   <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -132,7 +136,9 @@ function modal (data){
   </div>
 </div>
   `
+  
   modalsec.appendChild(newdiv);
+  
 }
 
 
