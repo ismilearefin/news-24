@@ -112,10 +112,11 @@ function newsShow (news){
       
   }
 
+//  modal js ............
 
-  function newsdetail(newsditails){
+  function newsdetail(newsData){
     
-    const url = `https://openapi.programming-hero.com/api/news/${newsditails}`
+    const url = `https://openapi.programming-hero.com/api/news/${newsData}`
     // console.log(url)
     fetch(url)
       .then(res => res.json())
@@ -123,11 +124,11 @@ function newsShow (news){
   }
 
 
-function modal (data){
+function modal(data){
   // console.log(data)
   
   const  modalsec = document.getElementById('modal');
-  modalsec.innerText = '';
+  
   const newdiv = document.createElement('div')
   
   newdiv.innerHTML = `
@@ -146,7 +147,7 @@ function modal (data){
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Understood</button>
+        <button type="button" class="btn ">Understood</button>
       </div>
     </div>
   </div>
