@@ -1,10 +1,11 @@
-function newsCategories (){
+const newsCategories = () =>{
   fetch('https://openapi.programming-hero.com/api/news/categories')
     .then(res => res.json())
     .then(catagories => catagoriesName(catagories.data.news_category))
+    .catch(error => console.log(error))
 }
 
-function catagoriesName (names){
+const catagoriesName = names =>{
 
   for(const name of names){
     // console.log(name.category_name)
@@ -23,18 +24,18 @@ function catagoriesName (names){
 
 
 
-function catagorieslink(x){
+const catagorieslink = x =>{
   const url = `https://openapi.programming-hero.com/api/news/category/${x}`
   fetch(url)
   .then(res => res.json())
   .then(data => newsShow(data.data))
-  
+  .catch(error => console.log(error))
 }
 
 
 
 
-function newsShow (news){
+const newsShow = news =>{
   // console.log(news.length);
     
     const cardDiv = document.getElementById('cardDiv');
@@ -60,16 +61,16 @@ function newsShow (news){
                 </div>
                 <div class="col-md-9">
                   <div class="card-body px-4 pt-4 h-75 overflow-hidden short">
-                    <h5 class="card-title h4">${data?.title}</h5>
-                    <p class="card-text ">${data?.details}</p>
+                    <h5 class="card-title h4">${data?.title ? data.title : 'no data'}</h5>
+                    <p class="card-text ">${data?.details ? data.details : 'no data'}</p>
                   </div>
                   <div class="d-flex justify-content-between px-4  ">
                     <div class="d-flex align-self-center ">
                       <img style="border-radius: 100%; width: 40px;" src="${data?.author.img}" alt="">
-                      <p class="mx-3 mt-3 ">${data?.author.name}</p>
+                      <p class="mx-3 mt-3 ">${data?.author.name ? data.author.name : 'no data'}</p>
                     </div>
                     <div class="d-flex align-items-center">
-                      <i class="fa-solid fa-eye">${data?.total_view}</i>
+                      <i class="fa-solid fa-eye"> ${data?.total_view ? data.total_view : 'no data'}</i>
                     </div>
                     <div class="d-flex align-items-center">
                       <i class="fa-solid fa-star"></i>
@@ -114,21 +115,22 @@ function newsShow (news){
 
 //  modal js ............
 
-  function newsdetail(newsData){
+  const newsdetail = (newsData) =>{
     
     const url = `https://openapi.programming-hero.com/api/news/${newsData}`
     // console.log(url)
     fetch(url)
       .then(res => res.json())
       .then(news => modal(news.data[0]))
+      .catch(error => console.log(error))
   }
 
 
-function modal(data){
+const modal = (data) =>{
   // console.log(data)
   
   const  modalsec = document.getElementById('modal');
-  
+  modalsec.innerHTML = '';
   const newdiv = document.createElement('div')
   
   newdiv.innerHTML = `
@@ -136,14 +138,14 @@ function modal(data){
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel"> Total View :${data?.total_view}</h5>
+        <h5 class="modal-title" id="staticBackdropLabel"> Total View :${data?.total_view ? data.total_view :'no data'}</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <img src="${data?.image_url}" class="img-fluid rounded" alt="">
-        <h5 class="card-title h4">${data?.title}</h5>
-        <p class="card-text ">${data?.details}</p>
-        <p>Rating : ${data?.rating?.number}</p>
+        <img src="${data?.image_url }" class="img-fluid rounded" alt="">
+        <h5 class="card-title h4">${data?.title ? data.title : 'no data'}</h5>
+        <p class="card-text ">${data?.details ? data.details : 'no data'}</p>
+        <p>Rating : ${data?.rating?.number ? data.rating.number : 'no data'}</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
