@@ -17,7 +17,7 @@ function catagoriesName (names){
     mainDiv_cat.appendChild(newDiv_cat);
   }
 }
-newsCategories();
+
 
 
 
@@ -35,12 +35,19 @@ function catagorieslink(x){
 
 
 function newsShow (news){
+  // console.log(news.length);
+    
     const cardDiv = document.getElementById('cardDiv');
     cardDiv.innerText = '';
 
-    if((news?.length) !== 0){
-
+    if((news.length) !== 0){
+        const lengthDiv = document.getElementById('length');
+        lengthDiv.innerText = '';
+        const divs = document.createElement('h5')
+        divs.innerHTML = `${news.length} news here`
+        lengthDiv.appendChild(divs);
       for(const data of news){
+        
         // console.log(data)
         const newCardDiv = document.createElement('div');
         newCardDiv.setAttribute("class", "container");
@@ -89,6 +96,12 @@ function newsShow (news){
         
         }
       }else{
+        const lengthDiv = document.getElementById('length');
+        lengthDiv.innerText = '';
+        const divs = document.createElement('h5')
+        divs.innerHTML = ` No data found`
+        lengthDiv.appendChild(divs);
+
         const newTextDiv = document.createElement('div');
         newTextDiv.setAttribute("class", "text-center", "mt-4");
         newTextDiv.innerHTML =`
@@ -96,7 +109,7 @@ function newsShow (news){
         `
         cardDiv.appendChild(newTextDiv);
       }
-    
+      
   }
 
 
@@ -106,7 +119,7 @@ function newsShow (news){
     // console.log(url)
     fetch(url)
       .then(res => res.json())
-      .then(news => modal(news?.data[0]))
+      .then(news => modal(news.data[0]))
   }
 
 
@@ -149,7 +162,7 @@ function modal (data){
 
 
 
-
+newsCategories();
 
 
 
