@@ -1,4 +1,5 @@
 const newsCategories = () =>{
+  
   fetch('https://openapi.programming-hero.com/api/news/categories')
     .then(res => res.json())
     .then(catagories => catagoriesName(catagories.data.news_category))
@@ -22,9 +23,8 @@ const catagoriesName = names =>{
 
 
 
-
-
 const catagorieslink = x =>{
+  spinner(true) ;
   const url = `https://openapi.programming-hero.com/api/news/category/${x}`
   fetch(url)
   .then(res => res.json())
@@ -92,9 +92,6 @@ const newsShow = news =>{
           </div>
         `
         cardDiv.appendChild(newCardDiv);
-        
-        
-        
         }
       }else{
         const lengthDiv = document.getElementById('length');
@@ -110,12 +107,12 @@ const newsShow = news =>{
         `
         cardDiv.appendChild(newTextDiv);
       }
-      
+      spinner(false) ;
   }
 
 //  modal js ............
 
-  const newsdetail = (newsData) =>{
+  const newsdetail = newsData =>{
     
     const url = `https://openapi.programming-hero.com/api/news/${newsData}`
     // console.log(url)
@@ -160,7 +157,15 @@ const modal = (data) =>{
   
 }
 
-
+// spinner function here ..............
+const spinner = isloading =>{
+  const spinner = document.getElementById('spinner');
+  if(isloading){
+    spinner.classList.remove('d-none');
+  }else{
+    spinner.classList.add('d-none');
+  }
+}
 
 
 
