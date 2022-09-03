@@ -58,6 +58,7 @@
       </div> 
     </section>
     <!-- catagory box END....... -->
+
     <!-- empty fild... -->
     <section class="container">
       <div class="h5 py-2 px-4 rounded shadow bg-body">
@@ -67,6 +68,7 @@
       </div>
     </section>
     <!-- empty fild END... -->
+
     <!-- Sort By View section  --> 
     <section class="container my-4 py-4 d-flex justify-content-between">
       <div class="h5">Sort By View:  <span class="rounded bg-light px-4 py-2 h6">Default</span></div>
@@ -76,14 +78,17 @@
       </div>
     </section>
     <!-- Sort By View section END -->
+
     <!-- Card section ........ -->
     <section id="cardDiv" >
 
       
       
 
-
     </section> 
+
+
+
 <!-- spinner -->
     <section>
       <div id="spinner" class="text-center h-25 d-none" style="margin-top: 200px;">
@@ -93,13 +98,29 @@
       </div>
   
     </section>
+
+
 <!-- Modal -->
-  <section id="modal">
-
-
-
-
-
+  <section > 
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <!-- <h5 class="modal-title" id="staticBackdropLabel"> Total View :${data?.total_view ? data.total_view :'no data'}</h5> -->
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div id="modal" class="modal-body" >
+                <!-- <img src="${data?.image_url }" class="img-fluid rounded" alt="">
+                <h5 class="card-title h4">${data?.title ? data.title : 'no data'}</h5>
+                <p class="card-text ">${data?.details ? data.details : 'no data'}</p>
+                <p>Rating : ${data?.rating?.number ? data.rating.number : 'no data'}</p> -->
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+      </div>
   </section>
   </main>
   

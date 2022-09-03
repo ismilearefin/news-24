@@ -118,43 +118,30 @@ const newsShow = news =>{
     // console.log(url)
     fetch(url)
       .then(res => res.json())
-      .then(news => modal(news.data[0]))
+      .then(news => modal(news.data))
       .catch(error => console.log(error))
   }
 
 
-const modal = (data) =>{
-  // console.log(data)
+const modal = (maindata) =>{
   
-  const  modalsec = document.getElementById('modal');
-  modalsec.innerHTML = '';
-  const newdiv = document.createElement('div')
   
-  newdiv.innerHTML = `
-  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel"> Total View :${data?.total_view ? data.total_view :'no data'}</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <img src="${data?.image_url }" class="img-fluid rounded" alt="">
-        <h5 class="card-title h4">${data?.title ? data.title : 'no data'}</h5>
-        <p class="card-text ">${data?.details ? data.details : 'no data'}</p>
-        <p>Rating : ${data?.rating?.number ? data.rating.number : 'no data'}</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn ">Understood</button>
-      </div>
-    </div>
-  </div>
-</div>
+  
+  
+  for(const data of maindata){
+    // console.log(data)
+    // modalsec.innerHTML = '';
+    // const newdiv = document.createElement('div')
+    const  modalsec = document.getElementById('modal');
+  modalsec.innerHTML = `
+                <img src="${data?.image_url }" class="img-fluid rounded" alt="">
+                <h5 class="card-title h4">${data?.title ? data.title : 'no data'}</h5>
+                <p class="card-text ">${data?.details ? data.details : 'no data'}</p>
+                <p>Rating : ${data?.rating?.number ? data.rating.number : 'no data'}</p>
+                <h5 class="modal-title" id="staticBackdropLabel"> Total View :${data?.total_view ? data.total_view :'no data'}</h5>
   `
-  
-  modalsec.appendChild(newdiv);
-  
+  // modalsec.appendChild(newdiv);
+  }
 }
 
 // spinner function here ..............
