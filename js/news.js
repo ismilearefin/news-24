@@ -45,8 +45,8 @@ function newsShow (news){
         const newCardDiv = document.createElement('div');
         newCardDiv.setAttribute("class", "container");
         newCardDiv.innerHTML= `
-        <div class="container" onclick="newsdetail('${data?._id}')" > 
-              <div class="card mb-3 w-100 shadow " data-bs-toggle="modal" data-bs-target="#staticBackdrop"> 
+        <div class="container"  > 
+              <div class="card mb-3 w-100 shadow "> 
                 <div class="row g-0"> 
                 <div class="col-md-3 p-4">
                   <img src="${data?.thumbnail_url}" class="img-fluid rounded" alt="...">
@@ -73,7 +73,9 @@ function newsShow (news){
                     </div>
                     <div class="d-flex align-items-center">
                     
-                    <button class="btn"><i class="fa-solid fa-arrow-right text-info"></i></button>
+                    <button type="button" onclick="newsdetail('${data?._id}')"     class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    View
+                    </button>
                     </div>
                   </div>
                 </div>
@@ -112,7 +114,7 @@ function modal (data){
   // console.log(data)
   
   const  modalsec = document.getElementById('modal');
-  // modalsec.innerText = '';
+  modalsec.innerText = '';
   const newdiv = document.createElement('div')
   
   newdiv.innerHTML = `
@@ -124,13 +126,14 @@ function modal (data){
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <img src="${data?.image_url}" class="img-fluid rounded" alt="...">
+        <img src="${data?.image_url}" class="img-fluid rounded" alt="">
         <h5 class="card-title h4">${data?.title}</h5>
         <p class="card-text ">${data?.details}</p>
         <p>Rating : ${data?.rating?.number}</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Understood</button>
       </div>
     </div>
   </div>
