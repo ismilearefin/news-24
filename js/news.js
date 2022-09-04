@@ -36,8 +36,9 @@ const catagorieslink = x =>{
 
 
 const newsShow = news =>{
-  // console.log(news.length);
-    
+
+  // // news.sort(function(a, b){return b-a});
+  // console.log(news);
     const cardDiv = document.getElementById('cardDiv');
     cardDiv.innerText = '';
 
@@ -48,7 +49,6 @@ const newsShow = news =>{
         divs.innerHTML = `${news.length} news here`
         lengthDiv.appendChild(divs);
       for(const data of news){
-        
         // console.log(data)
         const newCardDiv = document.createElement('div');
         newCardDiv.setAttribute("class", "container");
@@ -138,7 +138,16 @@ const modal = (maindata) =>{
                 <h5 class="card-title h4">${data?.title ? data.title : 'no data'}</h5>
                 <p class="card-text ">${data?.details ? data.details : 'no data'}</p>
                 <p>Rating : ${data?.rating?.number ? data.rating.number : 'no data'}</p>
-                <h5 class="modal-title" id="staticBackdropLabel"> Total View :${data?.total_view ? data.total_view :'no data'}</h5>
+                <div class="d-flex justify-content-between px-4  ">
+                    <div class="d-flex align-self-center ">
+                      <img style="border-radius: 100%; width: 40px;" src="${data?.author.img}" alt="">
+                      <p class="mx-3 mt-3 ">${data?.author.name ? data.author.name : 'no data'}</p>
+                    </div>
+                    <div class="d-flex align-items-center">
+                      <i class="fa-solid fa-eye"> ${data?.total_view ? data.total_view : 'no data'}</i>
+                    </div>
+                </div>
+                    
   `
   // modalsec.appendChild(newdiv);
   }
