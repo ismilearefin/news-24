@@ -1,3 +1,6 @@
+
+// catagories links show function here...... 
+
 const newsCategories = () =>{
   
   fetch('https://openapi.programming-hero.com/api/news/categories')
@@ -21,9 +24,10 @@ const catagoriesName = names =>{
 }
 
 
-
+// here is catagory button onclick function ... 
 
 const catagorieslink = x =>{
+  // spinner start Here ..........
   spinner(true) ;
   const url = `https://openapi.programming-hero.com/api/news/category/${x}`
   fetch(url)
@@ -32,26 +36,22 @@ const catagorieslink = x =>{
   .catch(error => console.log(error))
 }
 
-
-
-
 const newsShow = news =>{
 
-  // // news.sort(function(a, b){return b-a});
-  // console.log(news);
     const cardDiv = document.getElementById('cardDiv');
     cardDiv.innerText = '';
-
+// check length of news.... 
     if((news.length) !== 0){
         const lengthDiv = document.getElementById('length');
         lengthDiv.innerText = '';
         const divs = document.createElement('h5')
         divs.innerHTML = `${news.length} news here`
         lengthDiv.appendChild(divs);
+// loop for news .......
       for(const data of news){
-        // console.log(data)
         const newCardDiv = document.createElement('div');
         newCardDiv.setAttribute("class", "container");
+        // card innerHTML ...........
         newCardDiv.innerHTML= `
         <div class="container"  > 
               <div class="card mb-3 w-100 shadow "> 
@@ -80,7 +80,6 @@ const newsShow = news =>{
                       <i class="fa-regular fa-star"></i>
                     </div>
                     <div class="d-flex align-items-center">
-                    
                     <button type="button" onclick="newsdetail('${data?._id}')"     class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                     View
                     </button>
@@ -99,7 +98,7 @@ const newsShow = news =>{
         const divs = document.createElement('h5')
         divs.innerHTML = ` No data found`
         lengthDiv.appendChild(divs);
-
+// no news found msg ............
         const newTextDiv = document.createElement('div');
         newTextDiv.setAttribute("class", "text-center", "mt-4");
         newTextDiv.innerHTML =`
@@ -107,15 +106,14 @@ const newsShow = news =>{
         `
         cardDiv.appendChild(newTextDiv);
       }
+      // for spinner.......
       spinner(false) ;
   }
 
 //  modal js ............
 
   const newsdetail = newsData =>{
-    
     const url = `https://openapi.programming-hero.com/api/news/${newsData}`
-    // console.log(url)
     fetch(url)
       .then(res => res.json())
       .then(news => modal(news.data))
@@ -124,15 +122,9 @@ const newsShow = news =>{
 
 
 const modal = (maindata) =>{
-  
-  
-  
-  
-  for(const data of maindata){
-    // console.log(data)
-    // modalsec.innerHTML = '';
-    // const newdiv = document.createElement('div')
+    for(const data of maindata){
     const  modalsec = document.getElementById('modal');
+    // here is modal body part .........
   modalsec.innerHTML = `
                 <img src="${data?.image_url }" class="img-fluid rounded" alt="">
                 <h5 class="card-title h4">${data?.title ? data.title : 'no data'}</h5>
@@ -146,10 +138,8 @@ const modal = (maindata) =>{
                     <div class="d-flex align-items-center">
                       <i class="fa-solid fa-eye"> ${data?.total_view ? data.total_view : 'no data'}</i>
                     </div>
-                </div>
-                    
+                </div>              
   `
-  // modalsec.appendChild(newdiv);
   }
 }
 
@@ -163,14 +153,5 @@ const spinner = isloading =>{
   }
 }
 
-
-
-
+// catagories function declare...........
 newsCategories();
-
-
-
-
-
-
-
